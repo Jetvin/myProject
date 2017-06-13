@@ -1,0 +1,140 @@
+@CHARSET "UTF-8";
+body{
+	background-color:rgba(214, 214, 214, 0.22);
+}
+
+.west {
+	float: left;
+	width: 20%;
+	height: 545px;
+	border-right: 1px solid rgba(218, 216, 216, 0.76);
+	border-bottom: 2px solid rgba(218, 216, 216, 0.76);
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.west li {
+	height: 46px;
+	border-radius: 8px;
+	margin: 1px 5px;
+}
+
+.west a {
+	display: block;
+	font-size: 14px;
+	line-height: 16px;
+	text-decoration: none;
+	padding: 15px 0 15px 20px;
+	color:#574464;
+}
+
+.west li:hover {
+	background-color: rgba(218, 216, 218, 0.41);
+}
+
+.west a:active {
+	color: #574464;
+}
+
+/*侧栏结束*/
+.center {
+	float: right;
+	width: 80%;
+	height: 545px;
+	border-left: 1px solid rgba(218, 216, 216, 0.76);
+	border-bottom: 2px solid rgba(218, 216, 216, 0.76);
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.tab {
+	/*height: 500px;*/
+	
+}
+
+div[id$="_div"] {
+	overflow-y: scroll;
+	height: 495px;
+	/* position: relative;
+	top: 45px; */
+}
+
+.tab ul {
+	width: 100%;
+	/* position: fixed;
+	z-index: 1; */
+}
+
+.tab li {
+	height: 40px;
+	/* border-left: 2px solid #aba9a9; */
+	border-bottom: 1px solid rgba(218, 216, 216, 0.76);
+	border-right: 1px solid rgba(218, 216, 216, 0.76);
+	border-radius: 8px;
+	list-style-type: none;
+}
+
+.tab a {
+	display: block;
+	font-size: 16px;
+	font-weight: bold;
+    color: rgba(99, 90, 132, 0.8);
+	height: 35px;
+	width: 250px;
+	text-decoration: none;
+	padding-top: 6px;
+	text-align: center;
+	margin-top: 2px;
+	margin-left: 2px;
+	border-top: 1px solid rgba(218, 216, 216, 0.76);
+	border-left: 1px solid rgba(218, 216, 216, 0.76);
+	border-right: 1px solid rgba(218, 216, 216, 0.76);
+	border-radius: 8px;
+	background-color: rgba(245, 243, 243, 0.76); 
+}
+
+.tab a:active {
+	color: #574464;
+}
+
+.container {
+	height: 330px;
+	width: 600px;
+	margin: 10px auto;
+}
+
+.remark {
+	border-top: 1px solid #aba9a9;
+	margin-top: 20px;
+	padding-left: 20px;
+	padding-right: 10px;
+}
+
+/*新添*/
+.search {
+	width: 100%;
+	/* min-height: 100px; */
+	height: 168px;
+	box-sizing: border-box;
+	padding-top: 8px;
+	padding-left: 100px;
+}
+
+.views {
+	width: 100%;
+	height: 240px;
+	box-sizing: border-box;
+}
+
+.search select {
+	height: 30px;
+	margin: 5px 10px 5px 0;
+}
+
+.search input {
+	height: 30px;
+	width: 50px;
+	margin: 5px 8px 5px 0;
+}
+
+/*内容栏结束*/

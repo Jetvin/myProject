@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/data/jpa 
+http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	
+	<context:component-scan base-package="com.ssh.service"></context:component-scan>
+	<context:component-scan base-package="com.ssh.dao"></context:component-scan>
+	
+	<!-- 1.引入公共配置文件 db.properties -->
+ 	<context:property-placeholder location="classpath:db.properties" />
+
+	<!-- 2.c3p0 dataSource -->
+ 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${dataSource.driverClassName}"></property>
+		<property name="jdbcUrl" value="${dataSource.url}"></property>
+		<property name="user" value="${dataSource.username}"></property>
+		<property name="password" value="${dataSource.password}"></property>
+		<property name="maxPoolSize" value="40"></property>
+		<property name="minPoolSize" value="1"></property>
+		<property name="initialPoolSize" value="1"></property>
+		<property name="maxIdleTime" value="20"></property>
+	</bean>
+
+	<!-- 3.配置hibernate5的会话工厂SessionFactory -->
+ 	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<!-- 数据源 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 实体类映射 -->
+		<property name="packagesToScan" value="com.ssh.entity" />
+		<!-- 用于指定持久化实方言 -->
+		<property name="jpaDialect">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+		</property>
+		<!-- 实现 LoadTimeWeaver -->
+		<property name="loadTimeWeaver">
+			<bean
+				class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
+		</property>
+		<!-- 用于指定持久化实现厂商类 -->
+		<property name="persistenceProvider">
+			<bean class="org.hibernate.ejb.HibernatePersistence" />
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.max_fetch_depth">2</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 4.配置Spring data JPA的事务管理（业务逻辑上数据操作的一致性） -->
+ 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<!-- 使用annotation定义事务 -->
+ 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+ 	
+	<!--制定JPA实现的持久层的根目录 -->
+ 	<jpa:repositories base-package="com.ssh.dao"  
+		entity-manager-factory-ref="entityManagerFactory"
+		transaction-manager-ref="transactionManager"
+	/>
+	
+</beans>

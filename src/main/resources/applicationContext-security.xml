@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+    	http://www.springframework.org/schema/security 
+    	http://www.springframework.org/schema/security/spring-security-4.1.xsd">
+    	
+	<http auto-config="true">
+		<!-- <intercept-url pattern="/accessDenied" access="hasRole('USER') OR hasRole('ADMIN')" /> -->
+		<intercept-url pattern="/main" access="hasRole('USER') OR hasRole('ADMIN')" />
+		<intercept-url pattern="/information" access="hasRole('USER') OR hasRole('ADMIN')" />
+		<intercept-url pattern="/test" access="hasRole('USER')" />
+		<intercept-url pattern="/answer" access="hasRole('USER')" />
+		<intercept-url pattern="/u_result" access="hasRole('USER')" />
+		<intercept-url pattern="/u_consult" access="hasRole('USER')" />
+		
+		<intercept-url pattern="/t_result" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/t_consult" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/search" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/findAllResult" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/findAllPaper" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/findByCondition" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/upDateFile" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/upLoadFile" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/exportExcel" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/downExcel" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/deletePaper" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/findAllUser" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/searchByCondition" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/registry" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/readRegistryExcel" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/readRemarkExcel" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/deleteUser" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/resetPassword" access="hasRole('ADMIN')" />
+		
+		<logout logout-url="/logout" logout-success-url="/login" invalidate-session="true"/>
+		
+		<session-management session-fixation-protection="none" invalid-session-url="/login"
+			session-authentication-error-url="/sessionAuthenticationFailure">
+            <concurrency-control max-sessions="1"
+             error-if-maximum-exceeded="true"
+             expired-url="/sessionTimeout"/>    
+        </session-management> 
+		
+		<!-- 未经授权访问处理 -->
+		<access-denied-handler ref="accessDeniedHandler" />
+		<!-- 自定义登录的界面 -->
+		<form-login login-page="/login" username-parameter="username"
+			password-parameter="password"
+			authentication-success-handler-ref="authenticationSuccessHandler"
+			authentication-failure-handler-ref="authenticationFailureHandler"/>
+	</http>
+	
+	<!-- 用户授权 -->
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="userDetailService">
+			<password-encoder hash="md5">
+				<!-- 使用用户名作为盐值 -->
+				<salt-source user-property="username"/>
+			</password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+
+	<!-- 认证成功handler的实现类 -->
+	<beans:bean id="authenticationSuccessHandler" class="com.ssh.controller.AuthenticationSuccessHandler"></beans:bean>
+
+	<!-- 认证失败handler的实现类 -->
+	<beans:bean id="authenticationFailureHandler" class="com.ssh.controller.AuthenticationFailureHandler"></beans:bean>
+
+	<!-- 未经授权访问处理handler实现类 -->
+	<beans:bean id="accessDeniedHandler" class="com.ssh.controller.AccessDeniedHandler"></beans:bean>
+
+	<!-- 动态授权service的实现类 -->
+	<beans:bean id="userDetailService" class="com.ssh.service.myUserDetailService"></beans:bean>
+
+
+</beans:beans>

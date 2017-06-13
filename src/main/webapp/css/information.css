@@ -1,0 +1,255 @@
+@CHARSET "UTF-8";
+body{
+	background-color:rgba(214, 214, 214, 0.22);
+}
+
+.west {
+	float: left;
+	width: 20%;
+	height: 545px;
+	border-right: 1px solid rgba(218, 216, 216, 0.76);
+	border-bottom: 2px solid rgba(218, 216, 216, 0.76);
+	/*border-top: 2px solid #aba9a9;*/
+	border-radius: 8px;
+	box-sizing: border-box;
+}
+
+.west li {
+	height: 46px;
+	border-radius: 8px;
+	margin: 1px 5px;
+}
+
+.west a {
+	display: block;
+	font-size: 16px;
+	line-height: 16px;
+	text-decoration: none;
+	padding: 15px 0 15px 20px;
+	color: #574464
+}
+
+.west li:hover {
+	background-color: rgba(218, 216, 218, 0.41);
+}
+
+.west a:active {
+	color: #574464;
+}
+
+.west .a {
+	padding-left: 40px;
+	font-size: 14px;
+}
+/*侧栏结束*/
+.center {
+	float: right;
+	width: 80%;
+	height: 545px;
+	border-left: 1px solid rgba(218, 216, 216, 0.76);
+	border-bottom: 2px solid rgba(218, 216, 216, 0.76);
+	/*border-top: 2px solid #aba9a9;*/
+	border-radius: 8px;
+	box-sizing: border-box;
+}
+
+.tab {
+	height: 500px;
+}
+
+.tab ul li {
+	height: 40px;
+	border-bottom: 1px solid rgba(218, 216, 216, 0.76);
+	border-right: 1px solid rgba(218, 216, 216, 0.76);
+	border-radius: 8px;
+	list-style-type: none;
+}
+
+.tab a {
+	display: block;
+	font-size: 16px;
+	font-weight: bold;
+    color: rgba(99, 90, 132, 0.8);
+	height: 35px;
+	width: 200px;
+	text-decoration: none;
+	padding-top: 6px;
+	text-align: center;
+	margin-top: 2px;
+	margin-left: 2px;
+	border-top: 1px solid rgba(218, 216, 216, 0.76);
+	border-left: 1px solid rgba(218, 216, 216, 0.76);
+	border-right: 1px solid rgba(218, 216, 216, 0.76);
+	border-radius: 8px;
+	background-color: rgba(245, 243, 243, 0.76); 
+}
+
+.tab a:active {
+	color: #574464;
+}
+
+.pwd, .contact, .info {
+	width: 500px;
+	height: 430px;
+	margin: 40px 0 0 60px;
+}
+
+.pwd ol, .contact ol, .info ol {
+	overflow: hidden;
+}
+
+.pwd li, .contact li, .info li {
+	line-height: 30px;
+	margin-top: 20px;
+}
+
+.pwd label[for$="pwd"], .contact label, .info label {
+	float: left;
+	font-size: 16px;
+	font-weight: bold; 
+	width: 110px;
+	margin-left: 15px;
+	color: #888787;
+}
+
+.pwd label[for="remark"] {
+	font-size: 14px;
+	color: red;
+	width: 100px;
+	margin-left: 20px;
+}
+
+.pwd li input, .contact li input, .info li input {
+	background: #ffffff;
+	border: #BDBCBB solid 1px;
+	border-radius: 3px;
+	font: normal 16px "宋体";
+	color: rgba(73, 99, 128, 0.95);
+    font-weight: bold;
+	outline: none;
+	padding: 5px;
+	width: 250px;
+	height:18px;
+
+}
+#user_icon{
+	width:71px;
+	height:71px;
+	float:right;
+	border:1px dotted;
+}
+#user_icon img{
+	width:70px;
+	height:70px;
+}
+.pwd li input:hover, .contact li input:hover, .info li input:hover,
+	.info select:hover{
+	cursor: pointer;
+}
+
+.pwd li input:focus, .contact li input:focus, .info li input:focus,
+	.info select:focus {
+	box-shadow: 0px 0px 3px 1px #7FB7E1;
+}
+
+.pwd #pwd_submit, .contact #contact_submit, .info #info_submit {
+	margin-left: 125px;
+	margin-top: 20px;
+	width: 80px;
+	height: 35px;
+	color: #fff;
+	font-size: 14px;
+	border-radius: 2px;
+	background-position: 0 -120px;
+	background-color: #3b7dc3;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	border: 1px solid #b1aeae;
+	border-color: #0f75a4 #0e6191 #0c497c #0e6191;
+}
+
+.pwd #pwd_submit:hover, .contact #contact_submit:hover, .info #info_submit:hover
+	{
+	background-color: #3986d8;
+	cursor: pointer;
+}
+
+.info select {
+	width: 100px;
+	height: 30px;
+	margin-right: 10px;
+	background: #ffffff;
+	border: #BDBCBB solid 1px;
+	border-radius: 3px;
+	font: normal 16px "宋体";
+	color: rgba(73, 99, 128, 0.95);
+    font-weight: bold;
+	padding:2px;
+	outline: none;
+}
+
+.info select:hover {
+	cursor: pointer;
+}
+
+.gridDiv{
+	width:100%;
+	height:380px;
+	box-sizing:border-box;
+}
+#dialog{
+	padding : 10px 20px;
+}
+
+.file{
+	float:left;
+	width:250px;
+	height:30px;
+	border-radius:5px;
+	
+}
+#upLoadDialog div[name='outter'],#registryDialog div[name='outter'],#upDateDialog div[name='outter']{
+	/* overflow:hidden; */
+	float:left;
+	margin:10px auto;
+}
+
+#img{
+	float:right;
+	margin:0 5px;
+	width:100px;
+	height:100px;
+	border:1px solid rgba(128, 128, 128, 0.15);
+	box-sizing:border-box;
+}
+
+label[for='text']{
+	float:left;
+}
+#upLoadDialog input[type='file'],#registryDialog input[type='file'],#upDateDialog input[type='file']{
+	float:left;
+	width:250px;
+	height:30px;
+}
+
+#textarea,#description{
+	float:left;
+	width:300px;
+	height:100px;
+	margin-top:20px;
+	resize: none;
+}
+
+#searchDialog select,#searchDialog input{
+	float:left;
+	margin-top:20px;
+	margin-right:5px;
+	height:30px;
+	border-radius:5px;
+	outline:none
+}
+#searchDialog input{
+	height:28px;
+	font-size:16px;
+	padding:0 2px;
+}
+/*内容栏结束*/
